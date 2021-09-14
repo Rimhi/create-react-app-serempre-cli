@@ -1,0 +1,15 @@
+{
+  "name": "create-react-app-serempre",
+  "version": "1.0.0",
+  "description": "command line create react application base for enterprise serempre",
+  "main": "index.js",
+  "bin": {
+    "create-react-app-serempre": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Ricardo Monterrosa",
+  "license": "ISC"
+}
