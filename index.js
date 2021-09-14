@@ -48,7 +48,7 @@ async function main() {
             })
         console.log('\n\nGo get a coffee, this is going to take ...\n')
         console.log('Installing dependencies...\n');
-        //execSync('npm install',configExecSync);
+        execSync('npm install',configExecSync);
 
 
         console.log('Removing useless files\n');
