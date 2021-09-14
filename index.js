@@ -29,7 +29,7 @@ async function main() {
     try {
         const configExecSync = {stdio:'inherit'}
         console.log('Downloading files...\n');
-        execSync(`git clone --depth 1 ${git_repo} ${projectPath}`,configExecSync);
+        execSync(`git clone --depth 1 ${git_repo} "${projectPath}"`,configExecSync);
 
         process.chdir(projectPath);
 
@@ -48,13 +48,27 @@ async function main() {
             })
         console.log('\n\nGo get a coffee, this is going to take ...\n')
         console.log('Installing dependencies...\n');
-        execSync('npm install',configExecSync);
+        //execSync('npm install',configExecSync);
 
 
         console.log('Removing useless files\n');
         execSync('npx rimraf ./.git',configExecSync);
         // fs.rmdirSync(path.join(projectPath, 'bin'), { recursive: true});
-
+            fs.appendFile('.env.staging',
+                `ENVIRONMENT=staging\nVERSION_NAME_NUMBER=1.0.0\nREACT_APP_API_URL=https://exampleurl.com/`,(err)=>{
+                    if(err) throw err;
+                    console.log('.env.staging file created successfully')
+                });
+            fs.appendFile('.env',
+                `ENVIRONMENT=dev\nVERSION_NAME_NUMBER=1.0.0\nREACT_APP_API_URL=https://api.themoviedb.org/3`,(err)=>{
+                    if(err) throw err;
+                    console.log('.env file created successfully')
+                })
+            fs.appendFile('.env.prod',
+                `ENVIRONMENT=prod\nVERSION_NAME_NUMBER=1.0.0\nREACT_APP_API_URL=https://exampleurl.com/`,(err)=>{
+                    if(err) throw err;
+                    console.log('.env.prod file created successfully')
+                })
         console.log('The installation is done, this is ready to use !\n\n');
         console.log('run npm start! \n\n')
 
