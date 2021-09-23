@@ -13,11 +13,25 @@ if(process.argv.length>3){
 }
 const projectName = process.argv[2];
 const currentPath = process.cwd();
-const projectPath = path.join(currentPath, projectName);
+let projectPath = path.join(currentPath, projectName);
 const git_repo = 'https://github.com/Rimhi/create-react-app-serempre';
 try {
-    fs.mkdirSync(projectPath);
+    console.log(projectName)
+    if(projectName.includes('/') && !projectName.includes('./')){
+        const folders = projectName.split('/');
+        let newPath = currentPath;
+        for (let i = 0; i < folders.length; i++) {
+            newPath = path.join(newPath,folders[i])
+            fs.mkdirSync(newPath);
+        }
+        projectPath = newPath;
+    }else if(projectName.includes('./')){
+        projectPath = currentPath;
+    }else{
+        fs.mkdirSync(projectPath);
+    }
 } catch (err) {
+    console.log(err);
     if (err.code === 'EEXIST') {
         console.log(`The file ${projectName} already exist in the current directory, please give it another name.\n`);
     } else {
