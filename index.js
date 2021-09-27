@@ -16,6 +16,11 @@ const currentPath = process.cwd();
 let projectPath = path.join(currentPath, projectName);
 const git_repo = 'https://github.com/Rimhi/create-react-app-serempre';
 try {
+<<<<<<< HEAD
+=======
+    console.log(projectName.indexOf('/'))
+    console.log(projectName)
+>>>>>>> a0f7da457b69800f5d421d7d1be233af4f036c25
     if(projectName.includes('/') && !projectName.includes('./') && projectName.indexOf('/')!==0){
         const folders = projectName.split('/');
         let newPath = currentPath;
